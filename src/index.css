@@ -1,0 +1,52 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+li{
+  list-style: none;
+}
+.face{
+  z-index: 10;
+}
+.hair{
+  z-index: 15;
+}
+.leftEye{
+  z-index: 13;
+}
+.rightEye{
+  z-index: 14;
+}
+
+.other{
+  z-index: 16;
+}
+
+.nose{
+  z-index: 12;
+}
+.mouth{
+  z-index: 11;
+}
+
+.iconMask{
+  background-position: left top;  /* 横長画像の左上を基準に表示 */
+  display: inline-block;          /* 複数の画像を横に並べたい場合 */
+  overflow: hidden;
+}
+
+#commentsAndForm{
+  width:50%;
+}
+#rooms{
+  width:90%;
+  margin: 20px;
+}

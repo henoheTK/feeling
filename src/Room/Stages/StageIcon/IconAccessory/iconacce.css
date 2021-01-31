@@ -1,0 +1,26 @@
+.icon-acce{
+}
+.stageIcon-displayName{
+  position: static;
+  text-align: center;
+  font-size: 20px;
+  margin: auto;
+}
+.self-mark{
+  color: aquamarine;
+}
+.stage-icon{
+  margin: auto;
+  top: -10%;
+}
+.reActionbuttons{
+  display: none;
+  text-align: center;
+}
+.stageIcon:hover .reActionbuttons {
+  display: block;
+}
+
+#newComment{
+
+}

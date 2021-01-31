@@ -1,0 +1,47 @@
+#stage{
+  border:solid;
+  width: 100%;
+  background-image: url('https://raw.githubusercontent.com/henohenon/mojigao-maker/master/images/background/%E3%81%B8%E3%81%AE%E5%9F%8E.png');
+}
+#kanransya{
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  max-width: 618px;
+  padding:0px;
+}
+#kanran{
+  animation:60s linear infinite kanranrotation;
+  position:absolute;
+  border:solid;
+  border-radius: 50%;
+  background-color: red;
+  width: 80%;
+  max-width: 618px;
+  height: 0%;
+  padding-bottom: 80%;
+}
+.sya{
+  transform-origin: 50px 50px;
+  width:100px;
+  height:100px;
+  position :absolute;
+  animation:60s linear infinite syarotation;
+}
+
+#stageIcon{
+  position: absolute;
+  width: 300%;
+  height: 300%;
+  top:-150%;
+  left: -150%;
+}
+@keyframes kanranrotation{
+  0%{ transform:rotateZ(0);}
+  100%{ transform:rotateZ(360deg); }
+}
+
+@keyframes syarotation{
+  0%{ transform:rotateZ(0deg);}
+  100%{ transform:rotateZ(-360deg); }
+}

@@ -1,0 +1,17 @@
+#room-header{
+  height:20px;
+  width:100%;
+  padding:0px;
+  margin:0px;
+  display: flex;
+  border-bottom: solid;
+}
+#room-name{
+  margin:0px;
+}
+#room-info{
+  display:flex;
+}
+.navbar{
+  margin-bottom: 0px;
+}

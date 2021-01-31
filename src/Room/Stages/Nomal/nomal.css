@@ -1,0 +1,29 @@
+#stage{
+  border:solid;
+  width: 100%;
+}
+#stageIcon{
+  position: static;
+}
+#nomal{
+  overflow: scroll;
+  height: 100%;
+}
+.stage-icon{
+  top:-10%
+}
+.icondiv{
+  width: auto;
+  height: auto;
+  display: inline-table;
+}
+
+@keyframes kanranrotation{
+  0%{ transform:rotateZ(0);}
+  100%{ transform:rotateZ(360deg); }
+}
+
+@keyframes syarotation{
+  0%{ transform:rotateZ(0deg);}
+  100%{ transform:rotateZ(-360deg); }
+}

@@ -1,0 +1,55 @@
+
+.balloon1 {
+  position: absolute;
+  display: inline-block;
+  color: #555;
+  font-size: 16px;
+  background: #e0edff;
+  border-radius: 15px;
+  min-width: 10%;
+  max-width: 100%;
+  min-height: 25px;
+  max-height: 80px;
+}
+.balloon1-text{
+  text-align: center;
+  padding: 5px 10px;
+  overflow: scroll;
+  min-width: 90px;
+  max-width: 200px;
+  min-height: 25px;
+  max-height: 80px;
+}
+
+.balloon1:before {
+  content: "";
+  position: absolute;
+  top: 90%;
+  left: 30%;
+  margin-left: -15px;
+  border: 15px solid transparent;
+  border-top: 15px solid #e0edff;
+}
+
+.balloon1 p {
+  margin: 0;
+  padding: 0;
+}
+
+.balloon1.top {
+  transform: translate(10px,-40%);
+  z-index: 30;
+}
+#stage{
+  border:solid;
+  height: 100%;
+  width: 100%;
+  height: 100%;
+  
+  width: 100%;
+  position: relative;
+}
+
+#commentForm{
+  border:solid;
+}
