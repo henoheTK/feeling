@@ -9,7 +9,6 @@ const RoomForm = () =>{
     let roomName = document.getElementById('nameInput').value;
     if(roomName.length > 0 && roomName.length<=15){
       let StageId  = document.getElementById('stage').value;
-      console.log(roomName,StageId);
       db.collection('/rooms').add({
         roomName     : roomName,
         stageId      : StageId,
@@ -18,10 +17,9 @@ const RoomForm = () =>{
         timeStamp    : firebase.firestore.FieldValue.serverTimestamp(),
         members      : []
       }).then((docs) => {
-        console.log(docs)
       }).catch(error => {
         // error
-        console.log(error)
+        alert('エラーが発生しました。申し訳ありませんが、しばらく待ってもう一度お試しください\nError:'+error)
       });
     }else{
       alert('ルーム名は1文字以上、15文字以下である必要があります。');

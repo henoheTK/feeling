@@ -10,8 +10,8 @@ import PartsSelect from './PartsSelect/PartsSelect';
 const imgPath='./images/icon/';
 
 const MakeIcon =()=> {
-  const [ nowKind , setNowKind ] = useState('nomal'); 
-  const [ nowName , setNowName ] = useState('leftEye');
+  const [ nowKind , setNowKind ] = useState(null); 
+  const [ nowName , setNowName ] = useState('face');
   const [ nowSize , setNowSize ] = useState(30);
   const [ nowRot  , setNowRot  ] = useState(0);
  
@@ -22,7 +22,6 @@ const MakeIcon =()=> {
       // 今のアイコンの情報を描画したりデータにセットしたり。
       SetImgsInfoAllAll(userInfo['iconinfo']);
       Object.entries(userInfo['iconinfo']).forEach(partInfo => {
-        console.log(partInfo[0],partInfo[1]['sizeX'],partInfo[1]['sizeY'],partInfo[0],partInfo[1]['rot'])
         SetSizeXYNow(partInfo[0],partInfo[1]['sizeX'],partInfo[1]['sizeY']);
         SetRotNow(partInfo[0],partInfo[1]['rot']);
         let img=document.getElementById(partInfo[0]+'Img');
@@ -32,9 +31,37 @@ const MakeIcon =()=> {
           img.classList.add(partInfo[0]);
           img.id=partInfo[0]+'Img';
         }
-        attach(img,partInfo[1]['sizeX'],partInfo[1]['sizeY'],partInfo[1]['posX'],partInfo[1]['posY'],partInfo[1]['rot'],partInfo[1]['kind'],partInfo[0]);});
+        attach(img,partInfo[1]['sizeX'],partInfo[1]['sizeY'],partInfo[1]['posX'],partInfo[1]['posY'],partInfo[1]['rot'],partInfo[1]['kind'],partInfo[0]);
+      });
     }
-  },[userInfo])
+    const facekind=GetImgsInfoEach(nowName,'kind');
+    // 選択してあるものをactiveに
+    document.getElementsByClassName('iconNameButton').forEach(activeElement => {
+      console.log(activeElement);
+      if(activeElement.classList.contains(nowName)){
+        activeElement.classList.add('active');
+      }
+    });
+    document.getElementsByClassName('iconKindButton').forEach(activeElement => {
+      if(activeElement.classList.contains(facekind)){
+        activeElement.classList.add('active');
+      }
+    });
+    setNowKind(GetImgsInfoEach(nowName,'kind'));
+  },[userInfo]);
+  
+  useEffect(()=>{
+    const facekind=GetImgsInfoEach(nowName,'kind');
+    document.getElementsByClassName('iconKindButton').forEach(activeElement => {
+      if(activeElement.classList.contains('active')){
+        activeElement.classList.remove('active');
+      }
+      if(activeElement.classList.contains(facekind)){
+        activeElement.classList.add('active');
+      }
+    });
+    setNowKind(facekind);
+  },[nowName])
 
   // マウスが動いた時に画像を追従させる関数
   const mouthmove = e =>{
@@ -194,14 +221,15 @@ const MakeIcon =()=> {
           </div>
           <div  id = "name-buttons" className="">
           {Object.entries(GetPartsAll()).map((value) => (
-            <button  key = {value[0]}  className = {value[0]+" "+"iconNameButton btn-border_buttom"}  data-name = {value[0]}  
+            // 「顔」とか「髪」とかのボタンを描画。
+            <button  key = {value[0]} id={value[0]+"IconNameButton"}  className = {value[0]+" "+"iconNameButton btn-border_buttom"}  data-name = {value[0]}  
               onClick = {(e)=>{
+                // 「顔」とかのボタンの今までアクティブついてたの消して、今押されたやつにactiveを追加。その他サイズや回転なども変更
                 document.getElementsByClassName('iconNameButton').forEach(activeElement => {
                   if(activeElement.classList.contains('active')){
                     activeElement.classList.remove('active');
                   }
                 });
-                e.target.classList.add('active');
                 setNowName(e.target.dataset.name);
                 setNowKind(GetImgsInfoEach(e.target.dataset.name,'kind'));
                 document.getElementById('sizeInput').value=GetSizeXNow(e.target.dataset.name);

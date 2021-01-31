@@ -31,8 +31,6 @@ const App = () => {
           db.collection('users').doc(userId).collection('seclet').doc(userId).get().then(seclet=>{
             let data=doc.data();
             let secletdata=seclet.data();
-            console.log(data,secletdata)
-            console.log('んー')
             setUserInfo({
               userName    : secletdata['userName'] ,
               email       : secletdata['email']    ,
@@ -75,7 +73,6 @@ const App = () => {
         <NavBar/>
         <Switch>
           <Route exact path = '/login' component = {NoLogin} /> 
-          {console.log(userId)}
           {isOnline === false &&<Redirect to = {'/login'} />}
           {isOnline === true &&
             <Switch>

@@ -4,6 +4,7 @@ import axios from 'axios';
 import firebase, { db } from '../../Firebase/Firebase';  
 import SplitPane from 'react-split-pane';
 import RoomForm from '../RoomForm/RoomForm';
+import '../Rooms/rooms.css'
 
 const Rooms = () => {
 
@@ -15,7 +16,6 @@ const Rooms = () => {
       // ルームのデータを取得。
       const unsubscribe = await db.collection('/rooms').orderBy('timeStamp', 'asc').get().then(col=> {
         if(!unmounted){
-          console.log("ぺ");
           // idを配列に
           let roomids=col.docs.map(postCol => 
             postCol.id
@@ -27,16 +27,15 @@ const Rooms = () => {
               postCol.data()
             );
           });
+          /* 本来は変わった部分だけいい感じにすべきなんだろうけど...時間足らず...
           col.docChanges().forEach(change => {
             console.log(change.doc.data());
           });
-          console.log(roomids,value)
+          */
           let rooms=[];
           // idとデータを合体
           for(let i = 0; i < roomids.length; i++){
-            console.log(value);
             let d = value[i]["timeStamp"].toDate();
-            console.log(d,d.getFullYear()+'/'+d.getMonth() + 1+'/'+d.getDate(),value[i]["timeStamp"],value[i]);
             rooms.push({
                 roomName     : value[i]["roomName"],
                 stageId      : value[i]["stageId"],
@@ -51,6 +50,7 @@ const Rooms = () => {
         }
       });// ...
     };
+
     roomsData();
   }, []);
   return (

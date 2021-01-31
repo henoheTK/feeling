@@ -27,7 +27,13 @@ const Comments=()=>{
   var Path = window.location.pathname;
 
   useEffect(()=>{
+    let target = document.getElementById('scroll-inner');
+    console.log(target);
+    target.scrollIntoView(false);
+  
+
     let moveTimer=IconMove();
+  
     return ()=>{
       moveTimer.forEach(timer => {
         clearInterval(timer);
@@ -37,20 +43,22 @@ const Comments=()=>{
 
   return (
     <div id='comments' className="list-group">
-      {comments && members &&
-        comments.map(comment=>(
-          <div key={comment.id.toString()} className="comment list-group-item d-flex">
-            <div className='iconMask commentIcon'>
-              <Icon iconInfo={members[comment.userId]['iconInfo']} iconSize={iconSize} emotion={comment.emotion} where='comments'/>
+      <div id="scroll-inner">
+        {comments && members &&
+          comments.map(comment=>(
+            <div key={comment.id.toString()} className="comment list-group-item d-flex">
+              <div className='iconMask commentIcon'>
+                <Icon iconInfo={members[comment.userId]['iconInfo']} iconSize={iconSize} emotion={comment.emotion} where='comments'/>
+              </div>
+              <div>
+                {console.log(members)}
+                <strong className="userName mb-1" style={{}}>{members[comment.userId]['displayName']}</strong>
+                <h3 className="commentContent" style={{}}>{comment.content}</h3>
+              </div>
             </div>
-            <div>
-              {console.log(members)}
-              <strong className="userName mb-1" style={{}}>{members[comment.userId]['displayName']}</strong>
-              <h3 className="commentContent" style={{}}>{comment.content}</h3>
-            </div>
-          </div>
-        ))
-      }
+          ))
+        }
+      </div>
     </div>
   );
 }

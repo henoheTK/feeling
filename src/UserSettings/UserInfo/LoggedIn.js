@@ -61,6 +61,7 @@ const Loggedin=()=>{
             <li><h4>メールアドレス</h4><h3>{userInfo['email']}</h3></li>
             <li><h4>Googleでログインしています</h4><button onClick = {logoutFromGoogle}>ログアウト</button></li>
           </ul>    
+          <>設定が終わったら、</><a href="/">ホーム</a><>に移動してルームに参加してみましょう！</><br/>
           <a id="save-button" onClick = {changeInfoAPI} >変更を保存</a>
         </div>
       }

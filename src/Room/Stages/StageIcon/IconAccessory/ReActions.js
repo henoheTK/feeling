@@ -6,11 +6,11 @@ const ReActions = (props) =>{
   const {reActions}=useContext(stageContext);
 
   return(
-    <div id="reActions" className="icon-acce">
+    <div id="" className="reActions icon-acce">
       {console.log(props.renderId,reActions)}
       {reActions[props.renderId].map(element => (
         <div key={element['id']}>
-          <h1>{element['name']}</h1>
+          <img src={"../../../../../images/reactions/"+element['name']+".png"} className="reactionImg"></img>
         </div>
       ))}
     </div>

@@ -28,7 +28,8 @@ const ReActionButtons = (props) =>{
   return(
     <div className="icon-acce reActionbuttons">
       <button className="reActionButton" onClick={reActionAPI} data-name="good" data-user={props.renderId}>good</button>  
-      <button className="reActionButton" onClick={reActionAPI} data-name="nazo" data-user={props.renderId}>謎</button>  
+      <button className="reActionButton" onClick={reActionAPI} data-name="kusa" data-user={props.renderId}>草</button>  
+      <button className="reActionButton" onClick={reActionAPI} data-name="question" data-user={props.renderId}>？</button>  
     </div>
   )
 }

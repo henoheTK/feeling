@@ -30,7 +30,6 @@ const Icon=(props)=>{
     let path;
     //rotは、感情がある場合0で渡す
     let rot;
-    console.log(props.emotion,props.emotion!==null);
     if(props.emotion!=='null'&&props.emotion&&emoteParts[props.emotion].indexOf(info[0])!==-1){
       path="../images/icon/"+props.emotion+"_"+info[0]+".png";
       rot=0;
@@ -51,7 +50,6 @@ const Icon=(props)=>{
   }
   return (
     <div className={props.where+"-icon"} style={{position:"relative", height:props.iconSize+"px", width:props.iconSize+"px"}}>
-      {console.log(props.iconInfo)}
       {Object.entries(props.iconInfo).map(info => (
         <Parts key={info[0]} info={info}></Parts>
       ))}  

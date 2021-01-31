@@ -62,7 +62,7 @@ function NavBar() {
   }
   },[userInfo]);
   return (
-    <nav className="navbar navbar-default">
+    <nav className="navbar navbar-default" style={{'margin':'0px'}}>
       <div className="container-fluid">
 				<div className="navbar-header">
 					<button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -80,7 +80,7 @@ function NavBar() {
             <li className=""><a href="/">ホーム<span className="sr-only">(current)</span></a></li>
 						
             {nowRoom!==null&&
-              <li className="active"><a href={"/room/"+nowRoom[0]}>{nowRoom[1]}<span className="sr-only">(current)</span></a></li>
+              <li className=""><a href={"/room/"+nowRoom[0]}>{nowRoom[1]}<span className="sr-only">(current)</span></a></li>
             }
 						<li className="dropdown">
               <a className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">ルームs <span className="caret"></span></a>
