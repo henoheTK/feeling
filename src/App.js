@@ -8,7 +8,7 @@ import Room from './Room/Room';
 import Main from './Main/Main';
 import { useWorker } from 'react-hooks-worker';
 
-import {googleauthConfig} from 'miserarenaiyo';
+import {googleauthConfig} from './miserarenaiyo';
 import firebase, { db } from './Firebase/Firebase';  
 import NoLogin from './UserSettings/NoLogin';
 import Error from './Error/Error';
