@@ -1,10 +1,27 @@
 import React,{ useContext } from 'react';
 import {Link} from 'react-router-dom';
+import { userContext } from '../../App';
 import { roomContext } from '../Room';
 import './roomheader.css'
+import firebase,{db} from '../../Firebase/Firebase';
 
 const RoomHeader=()=> {
   const {room}=useContext(roomContext);
+  const {userId} =useContext(userContext);
+
+
+  // 削除用のAPIだがしかしサブコレクションの削除ができないとかなんとかで時間的に諦め
+  const deleteRoomAPI=()=>{
+    window.confirm("この操作は取り消せません。よろしいですか？");
+    var result = window.confirm('この操作は取り消せません、よろしいですか？');
+    if(result){
+      const r=db.collection('/rooms').doc(room["id"]);
+      if(r){
+        db.collection('/rooms').doc(room["id"]).delete();
+      }
+    }
+  }
+  
   return (
     <header id="room-header">
       <div id="room-name">
@@ -16,16 +33,18 @@ const RoomHeader=()=> {
         <li> 作成日時：{room.madeTime}</li>
         <li> メンバー：{room.members.length}人</li>
 			</ul>
+      {console.log(room,room.madeUserId,userId)}
+      
     </header>
     );
 }
 
 export default RoomHeader;
 /*
-<nav className="navbar navbar-dark bg-primary fixed-top">
-      <Link className="navbar-brand" to="/">
-        エモいチャット(仮称)
-      </Link>
-    </nav>
  
+
+
+    {room.madeUserId === userId &&
+        <button onClick={deleteRoomAPI}>ルームを削除</button>
+      }
 */

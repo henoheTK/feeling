@@ -41,6 +41,7 @@ const Rooms = () => {
                 stageId      : value[i]["stageId"],
                 madeTime     : d.getFullYear()+'/'+d.getMonth() + 1+'/'+d.getDate(),
                 madeUserName : value[i]["madeUserName"],
+                madeUserId   : value[i]["madeUserId"],
                 members      : value[i]["members"],
                 id           : roomids[i],
               }

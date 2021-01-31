@@ -8,8 +8,7 @@
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**",
-      "src/miserarenaiyo.js"
+      "**/node_modules/**"
     ]
   }
 }

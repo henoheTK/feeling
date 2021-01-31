@@ -85,6 +85,7 @@ function NavBar() {
 						<li className="dropdown">
               <a className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">ルームs <span className="caret"></span></a>
               <ul className="dropdown-menu" role="menu">
+                  <li>へのへの</li>
                   {allrooms===false &&
                     <li><p>まだ入室しているルームがありません</p></li>
                   }

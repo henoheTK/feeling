@@ -50,6 +50,7 @@ const Room = () => {
             roomName     : value['roomName'],
             stageId      : value['stageId'],
             madeTime     : d.getFullYear()+'/'+d.getMonth() + 1+'/'+d.getDate(),
+            madeUserId   : value['madeUserId'],
             madeUserName : value['madeUserName'],
             members      : value['members'],
 
