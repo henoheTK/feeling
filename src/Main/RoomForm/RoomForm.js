@@ -32,7 +32,10 @@ const RoomForm = () =>{
     <div id="room-form">
       <label htmlFor="name" >ルームの名前</label>
       <input id="nameInput" type="text" name="name" maxLength="15" /><br/>
-      <label id="" htmlFor="stage" defaultValue="0">ステージ</label>
+      {
+        //ステージ未実装のため、ここは表示されません。
+      }
+      <label id="select-label" htmlFor="stage" defaultValue="0">ステージ</label>
       <select id="stage-select" name="stage" className="custom-select">
         <option value="0">Zero</option>
         <option value="1">One</option>

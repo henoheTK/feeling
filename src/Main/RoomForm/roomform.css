@@ -9,4 +9,8 @@
 }
 #stage-select{
   width: 50%;
+  display: none;
+}
+#select-label{
+  display: none;
 }
