@@ -1,6 +1,7 @@
 import React,{useContext} from 'react';
 import firebase,{db} from '../../Firebase/Firebase';
 import {userContext} from '../../App';
+import './roomform.css';
 
 const RoomForm = () =>{
   const {userId,userInfo} =useContext(userContext);
@@ -8,7 +9,7 @@ const RoomForm = () =>{
   const roomAPI=()=>{
     let roomName = document.getElementById('nameInput').value;
     if(roomName.length > 0 && roomName.length<=15){
-      let StageId  = document.getElementById('stage').value;
+      let StageId  = document.getElementById('stage-select').value;
       db.collection('/rooms').add({
         roomName     : roomName,
         stageId      : StageId,
@@ -17,6 +18,7 @@ const RoomForm = () =>{
         timeStamp    : firebase.firestore.FieldValue.serverTimestamp(),
         members      : []
       }).then((docs) => {
+        document.location.reload();
       }).catch(error => {
         // error
         alert('エラーが発生しました。申し訳ありませんが、しばらく待ってもう一度お試しください\nError:'+error)
@@ -27,11 +29,11 @@ const RoomForm = () =>{
   }
 
   return(
-    <div id="roomForm">
+    <div id="room-form">
       <label htmlFor="name" >ルームの名前</label>
       <input id="nameInput" type="text" name="name" maxLength="15" /><br/>
-      <label htmlFor="stage" defaultValue="0">ステージ</label>
-      <select id="stage" name="stage" className="custom-select">
+      <label id="" htmlFor="stage" defaultValue="0">ステージ</label>
+      <select id="stage-select" name="stage" className="custom-select">
         <option value="0">Zero</option>
         <option value="1">One</option>
         <option value="2">Two</option>

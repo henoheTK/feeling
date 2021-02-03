@@ -1,0 +1,12 @@
+#room-form{
+  border: solid rgb(196, 196, 196) 2px;
+  width: 30%;
+  padding: 2%;
+  margin: 20px;
+  float: right;
+  margin-right: 3%;
+  border-radius: 30px;
+}
+#stage-select{
+  width: 50%;
+}

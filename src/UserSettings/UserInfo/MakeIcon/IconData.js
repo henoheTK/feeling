@@ -1,10 +1,23 @@
+const defaultIcons=[{
+  'face'      : {posX : 0 , posY : 0 , sizeX : 300 , sizeY : 300 , rot : 0 , kind : 'nomal'},
+  'hair'      : {posX : 0 , posY : 0 , sizeX : 300 , sizeY : 300 , rot : 0 , kind : 'nomal'},
+  'leftEye'   : {posX : 100 , posY : 150 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'nomal'},
+  'rightEye'  : {posX : 170 , posY : 150 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'nomal'},
+  'nose'      : {posX : 130 , posY : 180 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'nomal'},
+  'mouth'     : {posX : 140 , posY : 210 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'nomal'},
+  'other'     : {posX : 0 , posY : 0 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'none'},
+}];
+function GetIconRandom(){
+  return defaultIcons[Math.floor(Math.random() * Math.floor(defaultIcons.length))]
+}
+
 // パーツボタンの情報ズ。一応拡張性のためにKindsの中身2次元連想配列(？)にしてるけどいらないかも。
 const partsData=
 { 
   'face'      : { displayName : '顔'   , Kinds : {'henoheno' : {displayKind : 'じ'}, 'nomal' : {displayKind : 'フツー'} ,'monster' : {displayKind : '化物'},'komugi' : {displayKind : '小麦色'},'maru' : {displayKind : 'まる'} }} ,
   'hair'      : { displayName : '髪'   , Kinds : { 'none' : {displayKind : 'なし'}   ,'nomal' : {displayKind : 'フツー'} ,'cat' : {displayKind : 'ケモミミ'},'tyuni' : {displayKind : '厨二'} ,'kaku' : {displayKind : 'カクガリ'}} } ,
   'leftEye'   : { displayName : '左目' , Kinds : { 'henoheno' : {displayKind : 'への'},'no' : {displayKind : 'の'},'nomal' : {displayKind : 'フツー'} ,'cat' : {displayKind : 'ねこ'},'red' : {displayKind : '紅'},'blue' : {displayKind : '蒼'} ,'tyome' : {displayKind : 'コメ'}}} ,
-  'rightEye'  : { displayName : '右目' , Kinds : { 'henoheno' : {displayKind : 'への'},'no' : {displayKind : 'の'} ,'cat' : {displayKind : 'ねこ'},'red' : {displayKind : '紅'},'blue' : {displayKind : '蒼'} ,'tyome' : {displayKind : 'コメ'}}} ,
+  'rightEye'  : { displayName : '右目' , Kinds : { 'henoheno' : {displayKind : 'への'},'no' : {displayKind : 'の'},'nomal' : {displayKind : 'フツー'},'cat' : {displayKind : 'ねこ'},'red' : {displayKind : '紅'},'blue' : {displayKind : '蒼'} ,'tyome' : {displayKind : 'コメ'}}} ,
   'nose'      : { displayName : '鼻'   , Kinds : { 'henoheno' : {displayKind : 'も'},'nomal' : {displayKind : 'フツー'} ,'cat' : {displayKind : '逆三角'},'pig' : {displayKind : 'ぶたっぱな'} } },
   'mouth'     : { displayName : '口'   , Kinds : { 'henoheno' : {displayKind : 'へ'},'nomal' : {displayKind : 'フツー'} ,'cat' : {displayKind : 'ダブリュー'},'fang' : {displayKind : '牙'},'tooth' : {displayKind : '歯'} }} ,
   'other'     : { displayName : 'その他', Kinds : { 'none' : {displayKind : 'なし'}, 'hige' : {displayKind : 'ひげ'},'hige' : {displayKind : 'ひげ'},'horns' : {displayKind : 'ツノ'} ,'glasses' : {displayKind : 'めがね'},'henoheno' : {displayKind : 'へのへの'} }} ,
@@ -137,6 +150,7 @@ function SetRotNow(partsName,value) {
 }
 
 export {
+  GetIconRandom,
   GetPartsAll,GetPartsData,GetPartsKinds,
   GetImgsInfoAllAll,GetImgsInfoAll,GetImgsInfoEach,SetImgsInfoAllAll,SetImgsInfoAll,SetImgsInfoEach,
   GetSizeXYNow,GetSizeYNow,GetSizeXNow,SetSizeXYNow,SetSizeYNow,SetSizeXNow,

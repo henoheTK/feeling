@@ -4,7 +4,6 @@
  * Licensed under the MIT license
  */
 
- import '../../bootstrap-native';
 if (typeof jQuery === 'undefined') {
   throw new Error('Bootstrap\'s JavaScript requires jQuery')
 }

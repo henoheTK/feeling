@@ -1,0 +1,16 @@
+#intoro-box{
+  background-color:white;
+  border: solid #3b9ae0;;
+  width: 95%;
+  display: flex;
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-left: 2.5%;
+}
+#intro-texts{
+  width: 65%;
+  margin-left: 10px;
+}
+#text{
+  margin-left: 40px;
+}

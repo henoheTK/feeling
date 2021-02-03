@@ -39,6 +39,7 @@ function Stage(props){
       console.log(before5min_unix,now);
       //var before5min = Timestamp(before5min_unix);
       const emoteUnsubscribe = await db.collection('/rooms').doc(roomId).collection('emotions').where('timeStamp','>',before5min_unix).onSnapshot(data=> {
+        console.log(data);
         let value=[];
         let emoteIds=data.docs.map(doc => 
           doc.id
@@ -54,7 +55,7 @@ function Stage(props){
         }
         console.log(data,value,emotes,"ん");
         setEmotions(emotes);
-      })
+      });
       return () => emoteUnsubscribe();
     }
     async function newCommentData(){
@@ -78,7 +79,7 @@ function Stage(props){
         }
         console.log(data,value,newComment,"ん");
         setNewComment(newComment);
-      })
+      });
       return () => newCommentUnsubscribe();
     }
     async function reActionData(){
@@ -110,7 +111,7 @@ function Stage(props){
         }
         console.log(data,value,reActionDatas,"ん");
         setActions(reActionDatas);
-      })
+      });
       return () => emoteUnsubscribe();
     }
     emotionData();
@@ -131,7 +132,6 @@ function Stage(props){
     <stageContext.Provider value={{newComment,setNewComment,emotions,setEmotions,reActions,setActions}}>
       <SplitPane split="horizontal" defaultSize={window.innerHeight-171}>
         <div id="stage" >
-          {console.log(splitSize)}
           <Nomal stageRadius={stageRadius}/>
         </div>
         <CommentForm />

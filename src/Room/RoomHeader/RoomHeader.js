@@ -4,6 +4,7 @@ import { userContext } from '../../App';
 import { roomContext } from '../Room';
 import './roomheader.css'
 import firebase,{db} from '../../Firebase/Firebase';
+import { deleteRoomSubCollection } from '../../CollectionDelete';
 
 const RoomHeader=()=> {
   const {room}=useContext(roomContext);
@@ -12,12 +13,22 @@ const RoomHeader=()=> {
 
   // 削除用のAPIだがしかしサブコレクションの削除ができないとかなんとかで時間的に諦め
   const deleteRoomAPI=()=>{
-    window.confirm("この操作は取り消せません。よろしいですか？");
     var result = window.confirm('この操作は取り消せません、よろしいですか？');
     if(result){
-      const r=db.collection('/rooms').doc(room["id"]);
+      const r=db.collection('/rooms').doc(room['id']);
+      const roomId=room['id']
       if(r){
-        db.collection('/rooms').doc(room["id"]).delete();
+        deleteRoomSubCollection(roomId,'newComment').then(()=>{
+          deleteRoomSubCollection(roomId,'emotions').then(()=>{
+            deleteRoomSubCollection(roomId,'reActions').then(()=>{
+              deleteRoomSubCollection(roomId,'comments').then(()=>{
+                r.delete().then(()=>{})
+              })
+            })
+          })
+        }).catch((error)=>{
+          console.log('Error:'+error)
+        });
       }
     }
   }
@@ -34,7 +45,9 @@ const RoomHeader=()=> {
         <li> メンバー：{room.members.length}人</li>
 			</ul>
       {console.log(room,room.madeUserId,userId)}
-      
+      {room.madeUserId === userId &&
+        <button onClick={deleteRoomAPI}>ルームを削除</button>
+      }
     </header>
     );
 }
@@ -44,7 +57,5 @@ export default RoomHeader;
  
 
 
-    {room.madeUserId === userId &&
-        <button onClick={deleteRoomAPI}>ルームを削除</button>
-      }
+    
 */

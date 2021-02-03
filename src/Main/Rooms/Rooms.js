@@ -57,20 +57,25 @@ const Rooms = () => {
   return (
     <div id="rooms" className="list-group">
       {rooms === null && <p>Loading rooms...</p>}
-      {
-        rooms && rooms.map(room => (
+      {rooms && 
+        rooms.map(room => (
           <li key={room.id} className="roomsItem list-group-item d-flex">
             <Link to={`/room/${room.id}`}>
               <h4 >{room.roomName}</h4>
             </Link>
             <h4 >作成者：{room.madeUserName}</h4>
-            {console.log(room.madeTime)}
             <h4 >作成日時：{room.madeTime}</h4>
             <h4 >メンバー：{room.members.length}人</h4>
           </li>
         ))
       }
-    </div>
+      {rooms && rooms.length === 0 &&
+        <li key={"none room"} className="roomsItem list-group-item d-flex">
+           <h4>まだルームはありません</h4>
+        </li>
+      }
+      
+	  </div>
   )
 }
 

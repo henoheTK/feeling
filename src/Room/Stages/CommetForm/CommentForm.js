@@ -15,7 +15,7 @@ const Form=()=>{
     document.body.addEventListener('keydown',
     event => {
       if (event.key === 'Enter' && event.ctrlKey) {
-          commentAPI();
+        commentAPI();
       }
     });  
   },[]);

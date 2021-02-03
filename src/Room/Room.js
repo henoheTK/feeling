@@ -11,6 +11,7 @@ import {userContext} from '../App'
 import RoomHeader from './RoomHeader/RoomHeader';
 import './room.css';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+import StageIcon from './Stages/StageIcon/StageIcon';
 
 const defaultSplitSize=800;
 
@@ -30,19 +31,28 @@ const Room = () => {
       const roomUnsubscribe = await db.collection('/rooms').doc(roomId).onSnapshot(doc=> {
         if(doc.exists){
           let value=doc.data();
-          console.log(userId,value['members']);
-          console.log(value['members'].indexOf(userId)===-1);
           if(value['members'].indexOf(userId)===-1){
-            console.log('追加');
+            console.log('入室しました');
             db.collection('rooms').doc(roomId).update({
               members: firebase.firestore.FieldValue.arrayUnion(userId)
+            }).then(()=>{
+              db.collection('users').doc(userId).update({
+                rooms: firebase.firestore.FieldValue.arrayUnion(roomId)
+              }).catch((error)=>{
+                console.log('Error:'+error)
+              }).then(()=>{
+                setIsRoom(true);
+              })
+              db.collection('users').doc(userId).update({
+                room: roomId
+              }).catch((error)=>{
+                console.log('Error:'+error)
+              })
+            }).catch((error)=>{
+              console.log('Error:'+error)
             })
-            db.collection('users').doc(userId).update({
-              rooms: firebase.firestore.FieldValue.arrayUnion(roomId)
-            })
-            db.collection('users').doc(userId).update({
-              room: roomId
-            })
+          }else{
+            setIsRoom(true);
           }
           let d = value['timeStamp'].toDate();
           let roomData={
@@ -55,7 +65,6 @@ const Room = () => {
             members      : value['members'],
 
           }
-          setIsRoom(true);
           setRoom(roomData);
         }else{
           setIsRoom(false);
@@ -68,7 +77,8 @@ const Room = () => {
 
   useEffect(() => {
     async function commentsData(){
-      if(isRoom){
+      if(isRoom) {
+        console.log(room)
         const commentsUnsubscribe = await db.collection('/rooms').doc(roomId).collection('comments').orderBy('timeStamp', 'asc').onSnapshot(data=> {
           let commentIds=data.docs.map(doc => 
             doc.id
@@ -92,35 +102,37 @@ const Room = () => {
           }
           console.log(commentIds,comments,data);
           setComments(comments);
-        });// ...
+        });
         return () => commentsUnsubscribe();
       }
     }
     
     async function membersData(){
       if(isRoom){
-          const memberUnsubscribe= await db.collection('rooms').doc(roomId).onSnapshot(async doc=>{
-          const memberIds=doc.data()['members'];
-          console.log(memberIds);
-          if(memberIds&&memberIds.length!==0){
-            await db.collection('users').where('userId','in',memberIds).get().then(infos=>{
-              if(!infos.empty){
-                console.log(infos);
-                let value={};
-                infos.docs.forEach(info=>{
-                  let data=info.data();
-                  let memberId=info.data()['userId'];
-                  value[memberId]={
-                    displayName : data['displayName'],
-                    oneWord     : data['oneWord'],
-                    iconInfo    : data['iconinfo']
-                  }
-                })
-                console.log(value,infos,infos.docs);
-                setMembers(value);
-              }
-              //infos.push(info.data()['iconinfo']);
-            });
+        const memberUnsubscribe= await db.collection('rooms').doc(roomId).onSnapshot(async doc=>{
+          if(doc.exists){
+            const memberIds=doc.data()['members'];
+            console.log(memberIds);
+            if(memberIds&&memberIds.length!==0){
+              await db.collection('users').where('userId','in',memberIds).get().then(infos=>{
+                if(!infos.empty){
+                  console.log(infos);
+                  let value={};
+                  infos.docs.forEach(info=>{
+                    let data=info.data();
+                    let memberId=info.data()['userId'];
+                    value[memberId]={
+                      displayName : data['displayName'],
+                      oneWord     : data['oneWord'],
+                      iconInfo    : data['iconinfo']
+                    }
+                  })
+                  console.log(value,infos,infos.docs);
+                  setMembers(value);
+                }
+                //infos.push(info.data()['iconinfo']);
+              });
+            }
           }
         });
         return () => memberUnsubscribe();
@@ -170,35 +182,6 @@ const Room = () => {
     </div>
   )
 }
-/*
-<img key={name} className="icon" src={"./images/icon/"+comment.iconinfo.info[name]["kind"]+"_"+name+".png"} style={{
-                    height   :comment.iconinfo.info[name]["sizeY"]/3  + "px" ,
-                    width    :comment.iconinfo.info[name]["sizeX"]/3  + "px" ,
-                    top      :comment.iconinfo.info[name]["posY"]/3 + "px" ,
-                    left     :comment.iconinfo.info[name]["posX"]/3 + "px" ,
-                    position :"absolute" , 
-                    transform:"rotate("+comment.iconinfo.info[name]["rot"]+"deg)",
-                  }} />
-
-
-                  <img key={info[0]} className="icon" src={"../images/icon/"+info[1]["kind"]+"_"+info[0]+".png"} style={{
-                    height   :info[1]["sizeY"]/3  + "px" ,
-                    width    :info[1]["sizeX"]/3  + "px" ,
-                    top      :info[1]["posY"]/3 + "px" ,
-                    left     :info[1]["posX"]/3 + "px" ,
-                    position :"absolute" , 
-                    transform:"rotate("+info[1]["rot"]+"deg)",
-                  }} />
-
-
-
-                  this.state.comments.map(comment => (
-              <div key={comment.id.toString()} className="comment">
-                  <Icon iconInfo={this.state.room.iconInfo.filter(i => (i.id === parseInt(comment.userId)))[0].value}/>
-                <h1 className="">{comment.content}</h1>
-              </div>
-            ))
-*/
 const roomContext=createContext([]);
 export {roomContext};
 export default Room;

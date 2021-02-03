@@ -14,6 +14,7 @@ const Loggedin=()=>{
     firebase.auth().signOut();
     setIsOnline(false);
     setUserId(null);
+    document.location.reload();
   }
 
   const changeInfoAPI = () =>{

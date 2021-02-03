@@ -1,6 +1,9 @@
 #rooms{
   overflow: scroll;
-  height: 500px;
-  width:90%;
-  margin: 20px;
+  height: 430px;
+  width: 60%;
+  float: left;
+  margin-left: 3%;
+  margin-top: 20px;
+  border: solid 1px gray;
 }

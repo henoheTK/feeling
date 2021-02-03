@@ -10,6 +10,7 @@ function Nomal(props){
 
   return (
     <div id="nomal">
+      {console.log(Object.keys(members),room,members,room['members'],room['members'],room['members'][0],members[room['members'][0]])}
       {Object.keys(members).map((m,index)=>(
         <div key={'icondiv'+index} className='icondiv'>
           <StageIcon renderInfo={[room['members'][index],members[room['members'][index]]]}/>

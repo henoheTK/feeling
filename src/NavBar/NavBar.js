@@ -31,12 +31,10 @@ function NavBar() {
         db.collection('rooms').where(firebase.firestore.FieldPath.documentId(),'in',userInfo['rooms']).get().then((doc)=>{
         let roomInfos={};
         let existsRoom=[];
-        console.log(doc);
         if(!doc.empty){
           doc.docs.forEach((room)=>{
             if(room.exists){
               roomInfos[room.id]=room.data()['roomName'];
-              console.log(room,room.id,room.data()['roomName'],room.data());
               existsRoom.push(room.id);
             }
           });
@@ -46,7 +44,6 @@ function NavBar() {
               rooms:existsRoom
             })
           }
-          console.log(roomInfos);
         }else{
           setAllRooms(false);
           db.collection('users').doc(userId).update({
@@ -78,21 +75,22 @@ function NavBar() {
 					<ul className="nav navbar-nav">
             
             <li className=""><a href="/">ホーム<span className="sr-only">(current)</span></a></li>
-						
+
             {nowRoom!==null&&
               <li className=""><a href={"/room/"+nowRoom[0]}>{nowRoom[1]}<span className="sr-only">(current)</span></a></li>
             }
-						<li className="dropdown">
+            <li className="dropdown">
               <a className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">ルームs <span className="caret"></span></a>
               <ul className="dropdown-menu" role="menu">
-                  <li>へのへの</li>
                   {allrooms===false &&
-                    <li><p>まだ入室しているルームがありません</p></li>
+                    <li><p>no rooms</p></li>
+                  }
+                  {allrooms===false &&
+                    <li><p>not loggedIn</p></li>
                   }
                   {allrooms!==null && allrooms!==false &&
                     Object.entries(allrooms).map((value)=>(
                      <li key={value[0]}><a href={"/room/"+value[0]}>{value[1]}</a></li>
-                     //console.log(value)
                     ))
                   }
 						  	</ul>
