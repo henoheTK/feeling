@@ -32,6 +32,7 @@ function NavBar() {
         let roomInfos={};
         let existsRoom=[];
         if(!doc.empty){
+          // ルームの名前配列の作成と同時に、存在するルームid配列を作成
           doc.docs.forEach((room)=>{
             if(room.exists){
               roomInfos[room.id]=room.data()['roomName'];
@@ -39,6 +40,8 @@ function NavBar() {
             }
           });
           setAllRooms(roomInfos);
+
+          // 存在するルームが、今設定されているルーム数より少なければ、今設定されているルームを上書き。削除された時対策
           if(existsRoom.length!==userInfo['rooms'].length){
             db.collection('users').doc(userId).update({
               rooms:existsRoom
@@ -85,7 +88,7 @@ function NavBar() {
                   {allrooms===false &&
                     <li><p>no rooms</p></li>
                   }
-                  {allrooms===false &&
+                  {isOnline===false &&
                     <li><p>not loggedIn</p></li>
                   }
                   {allrooms!==null && allrooms!==false &&

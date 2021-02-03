@@ -2,6 +2,7 @@ import firebase,{db} from '../Firebase/Firebase';
 import {Redirect} from 'react-router-dom';
 import {useContext} from 'react';
 import { setIsFirst, userContext } from '../App';
+import { GetIconRandom } from './UserInfo/MakeIcon/IconData';
 
 const NoLogin=()=>{
   const {setUserId,setUserName,setIsOnline,isOnline} = useContext(userContext);
@@ -36,15 +37,7 @@ const NoLogin=()=>{
               oneWord     : '',
               room        : null,
               rooms       : [],
-              iconinfo    :({
-                "face"      : {posX : 0 , posY : 0 , sizeX : 300 , sizeY : 300 , rot : 0 , kind : 'nomal'},
-                "hair"      : {posX : 0 , posY : 0 , sizeX : 300 , sizeY : 300 , rot : 0 , kind : 'nomal'},
-                "leftEye"   : {posX : 0 , posY : 0 , sizeX : 30  , sizeY : 30  , rot : 0 , kind : 'nomal'},
-                "rightEye"  : {posX : 0 , posY : 0 , sizeX : 30  , sizeY : 30  , rot : 0 , kind : 'nomal'},
-                "nose"      : {posX : 0 , posY : 0 , sizeX : 30  , sizeY : 30  , rot : 0 , kind : 'nomal'},
-                "mouth"     : {posX : 0 , posY : 0 , sizeX : 30  , sizeY : 30  , rot : 0 , kind : 'nomal'},
-                "other"     : {posX : 0 , posY : 0 , sizeX : 300 , sizeY : 300  , rot : 0 , kind : 'none'},
-              })
+              iconinfo    :(GetIconRandom())
             }).then(async (doc)=>{
               await db.collection('users').doc(result.user.uid).collection('seclet').doc(result.user.uid).set({
                 userName : result.user.displayName,

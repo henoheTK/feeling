@@ -4,7 +4,6 @@
   padding:0px;
   margin:0px;
   display: flex;
-  border-bottom: solid;
 }
 #room-name{
   margin:0px;
@@ -14,4 +13,9 @@
 }
 .navbar{
   margin-bottom: 0px;
+}
+#room-delete{
+  padding-top: 0px;
+  font-size: 12px;
+  margin-left: 20px;
 }

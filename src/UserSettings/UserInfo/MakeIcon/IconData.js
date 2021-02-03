@@ -1,12 +1,50 @@
-const defaultIcons=[{
-  'face'      : {posX : 0 , posY : 0 , sizeX : 300 , sizeY : 300 , rot : 0 , kind : 'nomal'},
-  'hair'      : {posX : 0 , posY : 0 , sizeX : 300 , sizeY : 300 , rot : 0 , kind : 'nomal'},
-  'leftEye'   : {posX : 100 , posY : 150 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'nomal'},
-  'rightEye'  : {posX : 170 , posY : 150 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'nomal'},
-  'nose'      : {posX : 130 , posY : 180 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'nomal'},
-  'mouth'     : {posX : 140 , posY : 210 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'nomal'},
-  'other'     : {posX : 0 , posY : 0 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'none'},
-}];
+const defaultIcons=[
+  {
+    'face'      : {posX : 0   , posY : 0   , sizeX : 300 , sizeY : 300 , rot : 0 , kind : 'nomal'},
+    'hair'      : {posX : 0   , posY : 0   , sizeX : 300 , sizeY : 300 , rot : 0 , kind : 'nomal'},
+    'leftEye'   : {posX : 90  , posY : 150 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'nomal'},
+    'rightEye'  : {posX : 160 , posY : 150 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'nomal'},
+    'nose'      : {posX : 120 , posY : 180 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'nomal'},
+    'mouth'     : {posX : 120 , posY : 210 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'nomal'},
+    'other'     : {posX : 0   , posY : 0   , sizeX : 300 , sizeY : 300 , rot : 0 , kind : 'none'},
+  },
+  {
+    'face'      : {posX : 0   , posY : 0   , sizeX : 300 , sizeY : 300 , rot : 0 , kind : 'henoheno'},
+    'hair'      : {posX : 0   , posY : 0   , sizeX : 300 , sizeY : 300 , rot : 0 , kind : 'none'},
+    'leftEye'   : {posX : 90  , posY : 150 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'henoheno'},
+    'rightEye'  : {posX : 160 , posY : 150 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'henoheno'},
+    'nose'      : {posX : 120 , posY : 180 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'henoheno'},
+    'mouth'     : {posX : 120 , posY : 210 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'henoheno'},
+    'other'     : {posX : 0   , posY : 0   , sizeX : 300 , sizeY : 300 , rot : 0 , kind : 'henoheno'},
+  },
+  {
+    'face'      : {posX : 0   , posY : 0   , sizeX : 300 , sizeY : 300 , rot : 0 , kind : 'maru'},
+    'hair'      : {posX : 0   , posY : 0   , sizeX : 300 , sizeY : 300 , rot : 0 , kind : 'cat'},
+    'leftEye'   : {posX : 90  , posY : 150 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'cat'},
+    'rightEye'  : {posX : 160 , posY : 150 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'cat'},
+    'nose'      : {posX : 120 , posY : 180 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'cat'},
+    'mouth'     : {posX : 120 , posY : 210 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'cat'},
+    'other'     : {posX : 0   , posY : 0   , sizeX : 300 , sizeY : 300 , rot : 0 , kind : 'hige'},
+  },
+  {
+    'face'      : {posX : 0   , posY : 0   , sizeX : 300 , sizeY : 300 , rot : 0 , kind : 'komugi'},
+    'hair'      : {posX : 0   , posY : 0   , sizeX : 300 , sizeY : 300 , rot : 0 , kind : 'kaku'},
+    'leftEye'   : {posX : 90  , posY : 150 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'red'},
+    'rightEye'  : {posX : 160 , posY : 150 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'blue'},
+    'nose'      : {posX : 120 , posY : 180 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'pig'},
+    'mouth'     : {posX : 120 , posY : 210 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'fang'},
+    'other'     : {posX : 0   , posY : 0   , sizeX : 300 , sizeY : 300 , rot : 0 , kind : 'horns'},
+  },
+  {
+    'face'      : {posX : 0   , posY : 0   , sizeX : 300 , sizeY : 300 , rot : 0 , kind : 'monster'},
+    'hair'      : {posX : 0   , posY : 0   , sizeX : 300 , sizeY : 290 , rot : 0 , kind : 'tyuni'},
+    'leftEye'   : {posX : 90  , posY : 150 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'tyome'},
+    'rightEye'  : {posX : 160 , posY : 150 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'tyome'},
+    'nose'      : {posX : 120 , posY : 180 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'hole'},
+    'mouth'     : {posX : 120 , posY : 210 , sizeX : 50  , sizeY : 50  , rot : 0 , kind : 'tooth'},
+    'other'     : {posX : 0   , posY : 0   , sizeX : 300 , sizeY : 300 , rot : 0 , kind : 'glasses'},
+  },
+];
 function GetIconRandom(){
   return defaultIcons[Math.floor(Math.random() * Math.floor(defaultIcons.length))]
 }
@@ -20,7 +58,7 @@ const partsData=
   'rightEye'  : { displayName : '右目' , Kinds : { 'henoheno' : {displayKind : 'への'},'no' : {displayKind : 'の'},'nomal' : {displayKind : 'フツー'},'cat' : {displayKind : 'ねこ'},'red' : {displayKind : '紅'},'blue' : {displayKind : '蒼'} ,'tyome' : {displayKind : 'コメ'}}} ,
   'nose'      : { displayName : '鼻'   , Kinds : { 'henoheno' : {displayKind : 'も'},'nomal' : {displayKind : 'フツー'} ,'cat' : {displayKind : '逆三角'},'pig' : {displayKind : 'ぶたっぱな'} } },
   'mouth'     : { displayName : '口'   , Kinds : { 'henoheno' : {displayKind : 'へ'},'nomal' : {displayKind : 'フツー'} ,'cat' : {displayKind : 'ダブリュー'},'fang' : {displayKind : '牙'},'tooth' : {displayKind : '歯'} }} ,
-  'other'     : { displayName : 'その他', Kinds : { 'none' : {displayKind : 'なし'}, 'hige' : {displayKind : 'ひげ'},'hige' : {displayKind : 'ひげ'},'horns' : {displayKind : 'ツノ'} ,'glasses' : {displayKind : 'めがね'},'henoheno' : {displayKind : 'へのへの'} }} ,
+  'other'     : { displayName : 'その他', Kinds : { 'none' : {displayKind : 'なし'},'horns' : {displayKind : 'ツノ'} ,'glasses' : {displayKind : 'めがね'},'henoheno' : {displayKind : 'へのへの'} }} ,
 }
 function GetPartsAll(){
   return partsData;

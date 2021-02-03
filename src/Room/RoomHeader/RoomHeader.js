@@ -46,7 +46,7 @@ const RoomHeader=()=> {
 			</ul>
       {console.log(room,room.madeUserId,userId)}
       {room.madeUserId === userId &&
-        <button onClick={deleteRoomAPI}>ルームを削除</button>
+        <button id="room-delete" onClick={deleteRoomAPI}>ルームを削除</button>
       }
     </header>
     );
