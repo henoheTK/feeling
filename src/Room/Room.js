@@ -109,15 +109,16 @@ const Room = () => {
     
     async function membersData(){
       if(isRoom){
+        let value={};
         const memberUnsubscribe= await db.collection('rooms').doc(roomId).onSnapshot(async doc=>{
-          if(doc.exists){
-            const memberIds=doc.data()['members'];
-            console.log(memberIds);
-            if(memberIds&&memberIds.length!==0){
-              await db.collection('users').where('userId','in',memberIds).get().then(infos=>{
+          const memberIds=doc.data()['members'];
+          console.log(memberIds);
+          if(memberIds&&memberIds.length!==0){
+            for(let i=0;i<Math.floor(memberIds.length/10)+1; i++){
+              let ten_memberIds=memberIds.slice( i * 10 , (i * 10) + 10 );
+              await db.collection('users').where('userId','in',ten_memberIds).get().then(infos=>{
                 if(!infos.empty){
                   console.log(infos);
-                  let value={};
                   infos.docs.forEach(info=>{
                     let data=info.data();
                     let memberId=info.data()['userId'];
@@ -128,9 +129,12 @@ const Room = () => {
                     }
                   })
                   console.log(value,infos,infos.docs);
-                  setMembers(value);
-                }
-                //infos.push(info.data()['iconinfo']);
+                  console.log("member",Math.floor(memberIds.length/10)+1,i)
+                  if(i+1 >= Math.floor(memberIds.length/10)+1){
+                    console.log("member load fin:"+value,value.length);
+                    setMembers(value);
+                  }
+                }  
               });
             }
           }
@@ -168,8 +172,8 @@ const Room = () => {
                   {members !== null&&<Stage/>}
                 </div>
                 <div id="right" >
-                  {comments === null && <p>Loading Ccomments...</p>}
-                  {comments !==null && <Comments />}
+                  {comments === null && members !== null && <p>Loading Ccomments...</p>}
+                  {comments !==null && members !== null && <Comments />}
                 </div>
               </SplitPane>
             </div>
