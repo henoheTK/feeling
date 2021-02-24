@@ -20,11 +20,15 @@ const Form=()=>{
     });  
   },[]);
 
+  var newCommentTimer;
+
   // コメント投稿のAPI
   function commentAPI (){  
     let content=document.getElementById('inputComment').value;
     // 0文字より多く、300文字より少なく入力されているなら
     if(content.length>0&&content.length<=300){
+      // フォームの中身をなくす
+      document.getElementById('inputComment').value='';
       let roomId=room['id'];
       let emotion;
       if(emotions[userId]){
@@ -43,13 +47,18 @@ const Form=()=>{
         content   : content,
         timeStamp : firebase.firestore.FieldValue.serverTimestamp()
       }).then(()=>{
-        // フォームの中身をなくす
-        document.getElementById('inputComment').value='';
+        console.log(newCommentTimer,"newComment Timer")
+        // 前のnewCommentの分が残っているなら、クリア
+        if(newCommentTimer){
+          clearTimeout(newCommentTimer);
+          console.log("newComment Timer Cleared!",newCommentTimer)
+        }
         // 6秒後にステージ用のコメントを消す。
-        setTimeout(function(){
+        newCommentTimer=setTimeout(function(){
           db.collection('rooms').doc(room['id']).collection('newComment').doc(userId).delete();
-        }, 6000)}
-      )
+        }, 6000)
+        console.log(newCommentTimer+"newComment Timer");
+      })
     }
   }
   // エモートのAPI

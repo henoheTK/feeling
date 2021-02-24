@@ -16,6 +16,7 @@
   width: auto;
   height: auto;
   display: inline-table;
+  margin:10px;
 }
 
 @keyframes kanranrotation{
